@@ -1,0 +1,74 @@
+
+<div>
+    <h2><span data-translate="jhipsterGrpcSampleApplicationApp.bankAccount.detail.title">Bank Account</span> {{vm.bankAccount.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="jhipsterGrpcSampleApplicationApp.bankAccount.name">Name</span></dt>
+        <dd>
+            <span>{{vm.bankAccount.name}}</span>
+        </dd>
+        <dt><span data-translate="jhipsterGrpcSampleApplicationApp.bankAccount.bankNumber">Bank Number</span></dt>
+        <dd>
+            <span>{{vm.bankAccount.bankNumber}}</span>
+        </dd>
+        <dt><span data-translate="jhipsterGrpcSampleApplicationApp.bankAccount.agencyNumber">Agency Number</span></dt>
+        <dd>
+            <span>{{vm.bankAccount.agencyNumber}}</span>
+        </dd>
+        <dt><span data-translate="jhipsterGrpcSampleApplicationApp.bankAccount.lastOperationDuration">Last Operation Duration</span></dt>
+        <dd>
+            <span>{{vm.bankAccount.lastOperationDuration}}</span>
+        </dd>
+        <dt><span data-translate="jhipsterGrpcSampleApplicationApp.bankAccount.meanOperationDuration">Mean Operation Duration</span></dt>
+        <dd>
+            <span>{{vm.bankAccount.meanOperationDuration}}</span>
+        </dd>
+        <dt><span data-translate="jhipsterGrpcSampleApplicationApp.bankAccount.balance">Balance</span></dt>
+        <dd>
+            <span>{{vm.bankAccount.balance}}</span>
+        </dd>
+        <dt><span data-translate="jhipsterGrpcSampleApplicationApp.bankAccount.openingDay">Opening Day</span></dt>
+        <dd>
+            <span>{{vm.bankAccount.openingDay | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span data-translate="jhipsterGrpcSampleApplicationApp.bankAccount.lastOperationDate">Last Operation Date</span></dt>
+        <dd>
+            <span>{{vm.bankAccount.lastOperationDate | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="jhipsterGrpcSampleApplicationApp.bankAccount.active">Active</span></dt>
+        <dd>
+            <span>{{vm.bankAccount.active}}</span>
+        </dd>
+        <dt><span data-translate="jhipsterGrpcSampleApplicationApp.bankAccount.accountType">Account Type</span></dt>
+        <dd>
+            <span data-translate="{{'jhipsterGrpcSampleApplicationApp.BankAccountType.' + vm.bankAccount.accountType}}">{{vm.bankAccount.accountType}}</span>
+        </dd>
+        <dt><span data-translate="jhipsterGrpcSampleApplicationApp.bankAccount.attachment">Attachment</span></dt>
+        <dd>
+            <div ng-if="vm.bankAccount.attachment">
+                <a ng-click="vm.openFile(vm.bankAccount.attachmentContentType, vm.bankAccount.attachment)" data-translate="entity.action.open">open</a>
+                {{vm.bankAccount.attachmentContentType}}, {{vm.byteSize(vm.bankAccount.attachment)}}
+            </div>
+        </dd>
+        <dt><span data-translate="jhipsterGrpcSampleApplicationApp.bankAccount.description">Description</span></dt>
+        <dd>
+            <span>{{vm.bankAccount.description}}</span>
+        </dd>
+        <dt><span data-translate="jhipsterGrpcSampleApplicationApp.bankAccount.user">User</span></dt>
+        <dd>
+            {{vm.bankAccount.userLogin}}
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="bank-account-detail.edit({id:vm.bankAccount.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

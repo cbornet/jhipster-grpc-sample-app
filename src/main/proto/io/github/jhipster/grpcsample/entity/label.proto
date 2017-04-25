@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "io.github.jhipster.grpcsample.grpc.entity.label";
+//option java_outer_classname = "";
+
+package io.github.jhipster.grpcsample.entity;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/wrappers.proto";
+import "util/pagination.proto";
+
+// gRPC service providing CRUD methods for entity Label
+service LabelService {
+    // Create a new label.
+    // request : the labelProto to create
+    // response : the created labelProto or a ALREADY_EXISTS error
+    rpc CreateLabel (LabelProto) returns (LabelProto);
+
+    // Update or create a label.
+    // request : the labelProto to update or create
+    // response : the updated labelProto
+    rpc UpdateLabel (LabelProto) returns (LabelProto);
+
+    // Get all the labels.
+    // response : the list of labelProtos
+    rpc GetAllLabels (util.PageRequest) returns (stream LabelProto);
+
+    // Get a label from it's id.
+    // request : the id of the labelProto to retrieve
+    // response : the labelProto or a NOT_FOUND error
+    rpc GetLabel (google.protobuf.Int64Value) returns (LabelProto);
+
+    // Delete a label from it's id.
+    // request : the id of the labelProto to delete
+    // response : empty or a NOT_FOUND error
+    rpc DeleteLabel (google.protobuf.Int64Value) returns (google.protobuf.Empty);
+}
+
+
+// Protobuf message for entity Label
+message LabelProto {
+    oneof id_oneof {
+        int64 id = 1;
+    }
+
+    string label = 2;
+
+}

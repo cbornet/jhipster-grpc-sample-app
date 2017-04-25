@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "io.github.jhipster.grpcsample.grpc";
+
+import "google/protobuf/empty.proto";
+
+package io.github.jhipster.grpcsample;
+
+service ProfileInfoService {
+    rpc GetActiveProfiles(google.protobuf.Empty) returns (ProfileInfo);
+}
+
+message ProfileInfo {
+    repeated string active_profiles = 1;
+    string ribbon_env = 2;
+}

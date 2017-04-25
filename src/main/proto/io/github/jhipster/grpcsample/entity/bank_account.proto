@@ -1,0 +1,93 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "io.github.jhipster.grpcsample.grpc.entity.bank_account";
+//option java_outer_classname = "";
+
+package io.github.jhipster.grpcsample.entity;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/wrappers.proto";
+import "util/decimal.proto";
+import "util/date.proto";
+
+// gRPC service providing CRUD methods for entity BankAccount
+service BankAccountService {
+    // Create a new bankAccount.
+    // request : the bankAccountProto to create
+    // response : the created bankAccountProto or a ALREADY_EXISTS error
+    rpc CreateBankAccount (BankAccountProto) returns (BankAccountProto);
+
+    // Update or create a bankAccount.
+    // request : the bankAccountProto to update or create
+    // response : the updated bankAccountProto
+    rpc UpdateBankAccount (BankAccountProto) returns (BankAccountProto);
+
+    // Get all the bankAccounts.
+    // response : the list of bankAccountProtos
+    rpc GetAllBankAccounts (google.protobuf.Empty) returns (stream BankAccountProto);
+
+    // Get a bankAccount from it's id.
+    // request : the id of the bankAccountProto to retrieve
+    // response : the bankAccountProto or a NOT_FOUND error
+    rpc GetBankAccount (google.protobuf.Int64Value) returns (BankAccountProto);
+
+    // Delete a bankAccount from it's id.
+    // request : the id of the bankAccountProto to delete
+    // response : empty or a NOT_FOUND error
+    rpc DeleteBankAccount (google.protobuf.Int64Value) returns (google.protobuf.Empty);
+}
+
+enum BankAccountTypeProto {
+    CHECKING = 0;
+    SAVINGS = 1;
+    LOAN = 2;
+}
+
+// Protobuf message for entity BankAccount
+message BankAccountProto {
+    oneof id_oneof {
+        int64 id = 1;
+    }
+
+    string name = 2;
+    oneof bank_number_oneof {
+        int32 bank_number = 3;
+    }
+    oneof agency_number_oneof {
+        int64 agency_number = 4;
+    }
+    oneof last_operation_duration_oneof {
+        float last_operation_duration = 5;
+    }
+    oneof mean_operation_duration_oneof {
+        double mean_operation_duration = 6;
+    }
+    util.Decimal balance = 7;
+    util.Date opening_day = 8;
+    google.protobuf.Timestamp last_operation_date = 9;
+    oneof active_oneof {
+        bool active = 10;
+    }
+    oneof account_type_oneof {
+        BankAccountTypeProto account_type = 11;
+    }
+    oneof attachment_oneof {
+        bytes attachment = 12;
+    }
+
+    oneof attachment_content_type_oneof {
+        string attachment_content_type = 13;
+    }
+    oneof description_oneof {
+        string description = 14;
+    }
+    oneof user_id_oneof {
+        int64 user_id = 15;
+    }
+    oneof user_login_oneof {
+        string user_login = 16;
+    }
+
+}

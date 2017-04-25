@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "io.github.jhipster.grpcsample.grpc";
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/wrappers.proto";
+import "util/date.proto";
+    import "io/github/jhipster/grpcsample/user.proto";
+
+package io.github.jhipster.grpcsample;
+
+service AccountService {
+    rpc RegisterAccount(UserProto) returns (google.protobuf.Empty);
+    rpc ActivateAccount(google.protobuf.StringValue) returns (UserProto);
+    rpc IsAuthenticated(google.protobuf.Empty) returns (google.protobuf.StringValue);
+    rpc GetAccount(google.protobuf.Empty) returns (UserProto);
+    rpc SaveAccount(UserProto) returns (google.protobuf.Empty);
+    rpc ChangePassword(google.protobuf.StringValue) returns (google.protobuf.Empty);
+    rpc GetCurrentSessions(google.protobuf.Empty) returns (stream PersistentToken);
+    rpc InvalidateSession(google.protobuf.StringValue) returns (google.protobuf.Empty);
+    rpc RequestPasswordReset(google.protobuf.StringValue) returns (google.protobuf.Empty);
+    rpc FinishPasswordReset(KeyAndPassword) returns (google.protobuf.Empty);
+}
+
+message PersistentToken {
+    string series = 1;
+    util.Date token_date = 2;
+    string ip_address = 3;
+    string user_agent = 4;
+}
+
+message KeyAndPassword {
+    string key = 1;
+    string new_password =2;
+}

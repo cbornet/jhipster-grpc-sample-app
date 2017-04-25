@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "io.github.jhipster.grpcsample.grpc";
+
+import "google/protobuf/empty.proto";
+
+package io.github.jhipster.grpcsample;
+
+service ConfigurationPropertiesReportService {
+    rpc GetConfigurationProperties(google.protobuf.Empty) returns (ConfigurationPropertiesReport);
+}
+
+message ConfigurationProperty {
+    string prefix = 1;
+    string properties = 2;
+}
+
+message ConfigurationPropertiesReport {
+    ConfigurationPropertiesReport parent = 1;
+    map<string, ConfigurationProperty> configuration_properties = 2;
+}

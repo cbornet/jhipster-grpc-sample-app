@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "io.github.jhipster.grpcsample.grpc";
+
+import "google/protobuf/empty.proto";
+
+package io.github.jhipster.grpcsample;
+
+service EnvironmentService {
+    rpc GetEnv(google.protobuf.Empty) returns (Environment);
+}
+
+message Environment {
+    string value = 1;
+}
